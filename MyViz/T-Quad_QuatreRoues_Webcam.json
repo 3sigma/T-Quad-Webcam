@@ -47,7 +47,8 @@
 					"type": "iframewidget",
 					"settings": {
 						"title": "",
-						"host": "http://192.168.0.199:8080/stream_simple.html"
+						"host": "http://192.168.0.199:8080/stream_simple.html",
+                        "height": 9
 					}
 				}
 			]
