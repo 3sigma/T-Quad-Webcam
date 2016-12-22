@@ -1,0 +1,230 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "Démarrage",
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 9
+			},
+			"col": {
+				"3": 1,
+				"4": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "sshcommand",
+					"settings": {
+						"title": "Marche / Arrêt de l'application",
+						"host": "192.168.0.199",
+						"login": "root",
+						"password": "tquad",
+						"oncommand": "/root/programmes_python/startQuatreRoues_SuiviCouleur.sh",
+						"offcommand": "/root/programmes_python/stopPython.sh",
+						"ontext": "ON",
+						"offtext": "OFF",
+						"initialstate": false
+					}
+				}
+			]
+		},
+		{
+			"title": "Webcam",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": "2",
+			"widgets": [
+				{
+					"type": "iframewidget",
+					"settings": {
+						"host": "http://192.168.0.199:8080/stream_simple.html",
+						"height": 5
+					}
+				}
+			]
+		},
+		{
+			"title": "Télémétrie",
+			"width": 1,
+			"row": {
+				"3": 13,
+				"4": 5
+			},
+			"col": {
+				"3": 2,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "plot",
+					"settings": {
+						"title": "Ecart angulaire (degrés)",
+						"xaxis": "datasource_column",
+						"time": "datasources[\"ws\"][\"Temps\"]",
+						"time_window": 10,
+						"value": [
+							"datasources[\"ws\"][\"ecart_angulaire\"]"
+						],
+						"y_axis_min_range": "-1,1",
+						"height": 3,
+						"pausable": true
+					}
+				},
+				{
+					"type": "plot",
+					"settings": {
+						"title": "Commande",
+						"xaxis": "datasource_column",
+						"time": "datasources[\"ws\"][\"Temps\"]",
+						"time_window": 10,
+						"value": [
+							"datasources[\"ws\"][\"commande_rotation\"]"
+						],
+						"y_axis_min_range": "-1,1",
+						"height": 3,
+						"pausable": true
+					}
+				}
+			]
+		},
+		{
+			"title": "Couleur à suivre",
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 5
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "colorwheel",
+					"settings": {
+						"datasourcename": "ws",
+						"variableRGB": "datasources[\"ws\"][\"couleur\"]",
+						"initialvalue": "FF9600"
+					}
+				}
+			]
+		},
+		{
+			"title": "Moniteur",
+			"width": 1,
+			"row": {
+				"3": 19,
+				"4": 23
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": "1",
+			"widgets": [
+				{
+					"type": "textarea",
+					"settings": {
+						"nblines_window": "10",
+						"value": [
+							"datasources[\"ws\"][\"Raw\"]"
+						]
+					}
+				}
+			]
+		},
+		{
+			"title": "Télémétrie",
+			"width": 1,
+			"row": {
+				"3": 13
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "plot",
+					"settings": {
+						"title": "Rayon apparent (pixels)",
+						"xaxis": "seconds_from_start",
+						"time": "datasources[\"ws\"][\"Temps\"]",
+						"time_window": 10,
+						"value": [
+							"datasources[\"ws\"][\"rayon\"]"
+						],
+						"y_axis_min_range": "0,10",
+						"height": 3,
+						"pausable": true
+					}
+				},
+				{
+					"type": "plot",
+					"settings": {
+						"title": "Distance à l'objet (cm)",
+						"xaxis": "datasource_column",
+						"time": "datasources[\"ws\"][\"Temps\"]",
+						"time_window": 10,
+						"value": [
+							"datasources[\"ws\"][\"distance\"]"
+						],
+						"y_axis_min_range": "0,1",
+						"height": 3,
+						"pausable": true
+					}
+				}
+			]
+		},
+		{
+			"title": "Rayon de l'objet (cm)",
+			"width": 1,
+			"row": {
+				"3": 13
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "slider",
+					"settings": {
+						"datasourcename": "ws",
+						"variable": "datasources[\"ws\"][\"Robjet\"]",
+						"initialvalue": 3.5,
+						"min": 0,
+						"max": 10,
+						"resolution": 1,
+						"resetvalue": 3.5,
+						"resetcaption": "Réinitialisation"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "ws",
+			"type": "websocket",
+			"settings": {
+				"host": "ws://192.168.0.199:9090/ws",
+				"variables_to_send": "couleur,Robjet",
+				"refresh_rate": "500",
+				"checksum": "none"
+			}
+		}
+	],
+	"columns": 3
+}
