@@ -70,7 +70,6 @@
 					"type": "joypad4roues",
 					"settings": {
 						"title": "Vitesses longitudinale et de rotation",
-						"datasourcename": "ws",
 						"variablevxref": "datasources[\"ws\"][\"vxref\"]",
 						"variablevyref": "datasources[\"ws\"][\"vyref\"]",
 						"variablexiref": "datasources[\"ws\"][\"xiref\"]"

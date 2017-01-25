@@ -39,7 +39,8 @@
 				"3": 1
 			},
 			"col": {
-				"3": 2
+				"3": 2,
+				"4": 2
 			},
 			"col_width": "2",
 			"widgets": [
@@ -48,6 +49,28 @@
 					"settings": {
 						"host": "http://192.168.0.199:8080/stream_simple.html",
 						"height": 5
+					}
+				}
+			]
+		},
+		{
+			"title": "Couleur à suivre",
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 5
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "colorwheel",
+					"settings": {
+						"variableRGB": "datasources[\"ws\"][\"couleur\"]",
+						"initialvalue": "FF9600"
 					}
 				}
 			]
@@ -98,60 +121,15 @@
 			]
 		},
 		{
-			"title": "Couleur à suivre",
-			"width": 1,
-			"row": {
-				"3": 5,
-				"4": 5
-			},
-			"col": {
-				"3": 1,
-				"4": 1
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "colorwheel",
-					"settings": {
-						"datasourcename": "ws",
-						"variableRGB": "datasources[\"ws\"][\"couleur\"]",
-						"initialvalue": "FF9600"
-					}
-				}
-			]
-		},
-		{
-			"title": "Moniteur",
-			"width": 1,
-			"row": {
-				"3": 19,
-				"4": 23
-			},
-			"col": {
-				"3": 1,
-				"4": 1
-			},
-			"col_width": "1",
-			"widgets": [
-				{
-					"type": "textarea",
-					"settings": {
-						"nblines_window": "10",
-						"value": [
-							"datasources[\"ws\"][\"Raw\"]"
-						]
-					}
-				}
-			]
-		},
-		{
 			"title": "Télémétrie",
 			"width": 1,
 			"row": {
-				"3": 13
+				"3": 13,
+				"4": 13
 			},
 			"col": {
-				"3": 3
+				"3": 3,
+				"4": 3
 			},
 			"col_width": 1,
 			"widgets": [
@@ -191,17 +169,18 @@
 			"title": "Rayon de l'objet (cm)",
 			"width": 1,
 			"row": {
-				"3": 13
+				"3": 13,
+				"4": 13
 			},
 			"col": {
-				"3": 1
+				"3": 1,
+				"4": 1
 			},
 			"col_width": 1,
 			"widgets": [
 				{
 					"type": "slider",
 					"settings": {
-						"datasourcename": "ws",
 						"variable": "datasources[\"ws\"][\"Robjet\"]",
 						"initialvalue": 3.5,
 						"min": 0,
@@ -209,6 +188,30 @@
 						"resolution": 1,
 						"resetvalue": 3.5,
 						"resetcaption": "Réinitialisation"
+					}
+				}
+			]
+		},
+		{
+			"title": "Moniteur",
+			"width": 1,
+			"row": {
+				"3": 19,
+				"4": 23
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": "1",
+			"widgets": [
+				{
+					"type": "textarea",
+					"settings": {
+						"nblines_window": "10",
+						"value": [
+							"datasources[\"ws\"][\"Raw\"]"
+						]
 					}
 				}
 			]
