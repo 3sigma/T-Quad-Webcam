@@ -9,16 +9,13 @@
 # Suivi de couleur
 #
 # Auteur: 3Sigma
-# Version 1.1.0 - 22/12/2016
+# Version 1.1.1 - 30/01/2017
 ##################################################################################
 
 # Importe les fonctions Arduino pour Python
-from pyduino_pcduino import *
+from pyduino import *
 
-# Imports pour la communication i2c avec l'Arduino Mega
-from mega import Mega
-mega = Mega()
-
+# Imports Généraux
 import time, sched
 import os
 import threading
@@ -40,13 +37,22 @@ import tornado.websocket
 import tornado.template
 
 # Gestion de l'IMU
-import FaBo9Axis_MPU9250
+from mpu9250 import MPU9250
 
 # Imports pour OpenCV
 import cv2
 import numpy as np
 import colorsys
 
+# Nom de l'hostname (utilisé ensuite pour savoir sur quel système
+# tourne ce programme)
+hostname = socket.gethostname()
+
+# Imports pour la communication i2c avec l'Arduino Mega
+from mega import Mega
+mega = Mega(hostname = hostname)
+
+# Moteurs
 Nmoy = 1
 
 omegaArriereDroit = 0.
@@ -85,6 +91,7 @@ couleur = "FF9600"
 couleurPrec = "FF9600"
 # Rayon de l'objet (balle de tennis)
 Robjet = 0.035
+distance = 0
 
 # Timeout de réception des données
 timeout = 2
@@ -118,11 +125,27 @@ while not lectureTensionOK:
     except:
         print("Erreur lecture tension")
 
-# Déclaration pour l'IMU
+# Initialisation de l'IMU
 gz = 0.
 intgz = 0.
 offset_gyro = 0.
+if (hostname == "pcduino"):
+    I2CBUS = 2
+elif (hostname == "raspberrypi"):
+    I2CBUS = 1
+else:
+    # pcDuino par défaut
+    I2CBUS = 2
+    
+initIMU_OK = False
+while not initIMU_OK:
+    try:
+        imu = MPU9250(i2cbus=I2CBUS, address=0x69)
+        initIMU_OK = True
+    except:
+        print("Erreur init IMU")
 
+        
 # Initialisation OpenCV
 # Résolution souhaitée pour l'image. Remarque: la résolution native de l'image est 640x480, mais
 # cette résolution conduit à un temps de latence assez important. Il est préférable d'utiliser
@@ -151,16 +174,7 @@ ecart_angulaire = 0.
 
 #--- setup --- 
 def setup():
-    global imu, offset_gyro
-    
-    # Initialisation de l'IMU
-    initIMU_OK = False
-    while not initIMU_OK:
-        try:
-            imu = FaBo9Axis_MPU9250.MPU9250()
-            initIMU_OK = True
-        except:
-            print("Erreur init IMU")
+    global offset_gyro
     
     # Initialisation des moteurs
     CommandeMoteurs(0, 0, 0, 0)
