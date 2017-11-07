@@ -1,0 +1,98 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "Webcam",
+			"width": 1,
+			"row": {
+				"2": 9,
+				"3": 1,
+				"4": 1,
+				"5": 7
+			},
+			"col": {
+				"2": 2,
+				"3": 2,
+				"4": 3,
+				"5": 3
+			},
+			"col_width": "2",
+			"widgets": [
+				{
+					"type": "iframewidget",
+					"settings": {
+						"host": "http://192.168.0.199:8080/stream_simple.html",
+						"height": 9
+					}
+				}
+			]
+		},
+		{
+			"title": "Démarrage",
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 9
+			},
+			"col": {
+				"3": 1,
+				"4": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "sshcommand",
+					"settings": {
+						"title": "Marche / Arrêt de l'application",
+						"host": "192.168.0.199",
+						"login": "root",
+						"password": "tquad",
+						"oncommand": "/root/programmes_python/startDeuxRoues.sh",
+						"offcommand": "/root/programmes_python/stopPython.sh",
+						"ontext": "ON",
+						"offtext": "OFF",
+						"initialstate": false
+					}
+				}
+			]
+		},
+		{
+			"title": "Pilotage",
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "joypad2roues",
+					"settings": {
+						"title": "Vitesses longitudinale et de rotation",
+						"variablevxref": "datasources[\"ws\"][\"vxref\"]",
+						"variablexiref": "datasources[\"ws\"][\"xiref\"]"
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "ws",
+			"type": "websocket",
+			"settings": {
+				"host": "ws://192.168.0.199:9090/ws",
+				"variables_to_send": "vxref,xiref,source_ximes",
+				"refresh_rate": "500",
+				"checksum": "none"
+			}
+		}
+	],
+	"columns": 3
+}
