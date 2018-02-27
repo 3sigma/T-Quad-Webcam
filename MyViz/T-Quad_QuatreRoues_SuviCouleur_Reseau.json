@@ -4,56 +4,6 @@
 	"plugins": [],
 	"panes": [
 		{
-			"title": "Démarrage",
-			"width": 1,
-			"row": {
-				"3": 1,
-				"4": 9
-			},
-			"col": {
-				"3": 1,
-				"4": 2
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "sshcommand",
-					"settings": {
-						"title": "Marche / Arrêt de l'application",
-						"host": "192.168.0.199",
-						"login": "root",
-						"password": "tquad",
-						"oncommand": "/root/programmes_python/startQuatreRoues_SuiviCouleur.sh",
-						"offcommand": "/root/programmes_python/stopPython.sh",
-						"ontext": "ON",
-						"offtext": "OFF",
-						"initialstate": false
-					}
-				}
-			]
-		},
-		{
-			"title": "Webcam",
-			"width": 1,
-			"row": {
-				"3": 1
-			},
-			"col": {
-				"3": 2,
-				"4": 2
-			},
-			"col_width": "2",
-			"widgets": [
-				{
-					"type": "iframewidget",
-					"settings": {
-						"host": "http://192.168.0.199:8080/stream_simple.html",
-						"height": 5
-					}
-				}
-			]
-		},
-		{
 			"title": "Couleur à suivre",
 			"width": 1,
 			"row": {
@@ -80,11 +30,12 @@
 			"width": 1,
 			"row": {
 				"3": 13,
-				"4": 5
+				"4": 13,
+				"5": 31
 			},
 			"col": {
 				"3": 2,
-				"4": 1
+				"4": 2
 			},
 			"col_width": 1,
 			"widgets": [
@@ -116,6 +67,35 @@
 						"y_axis_min_range": "-1,1",
 						"height": 3,
 						"pausable": true
+					}
+				}
+			]
+		},
+		{
+			"title": "Démarrage",
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "sshcommand",
+					"settings": {
+						"title": "Marche / Arrêt de l'application",
+						"host": "192.168.0.199",
+						"login": "root",
+						"password": "tquad",
+						"oncommand": "/root/programmes_python/startQuatreRoues_SuiviCouleur.sh",
+						"offcommand": "/root/programmes_python/stopPython.sh",
+						"ontext": "ON",
+						"offtext": "OFF",
+						"initialstate": false
 					}
 				}
 			]
@@ -197,7 +177,7 @@
 			"width": 1,
 			"row": {
 				"3": 19,
-				"4": 23
+				"4": 19
 			},
 			"col": {
 				"3": 1,
@@ -215,6 +195,29 @@
 					}
 				}
 			]
+		},
+		{
+			"title": "Webcam",
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 2,
+				"4": 2,
+				"5": 3
+			},
+			"col_width": "2",
+			"widgets": [
+				{
+					"type": "iframewidget",
+					"settings": {
+						"host": "http://192.168.0.199:8080/stream_simple.html",
+						"height": 5
+					}
+				}
+			]
 		}
 	],
 	"datasources": [
@@ -229,5 +232,5 @@
 			}
 		}
 	],
-	"columns": 3
+	"columns": 4
 }

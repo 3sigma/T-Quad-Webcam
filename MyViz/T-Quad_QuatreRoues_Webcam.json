@@ -4,15 +4,67 @@
 	"plugins": [],
 	"panes": [
 		{
+			"title": "Webcam",
+			"width": 1,
+			"row": {
+				"3": 1,
+				"4": 1
+			},
+			"col": {
+				"3": 2,
+				"4": 2,
+				"5": 3
+			},
+			"col_width": "2",
+			"widgets": [
+				{
+					"type": "iframewidget",
+					"settings": {
+						"title": "",
+						"host": "http://192.168.0.199:8080/stream_simple.html",
+						"height": 9
+					}
+				}
+			]
+		},
+		{
+			"title": "Pilotage",
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 5,
+				"5": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 1,
+				"5": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "joypad4roues",
+					"settings": {
+						"title": "Vitesses longitudinale et de rotation",
+						"variablevxref": "datasources[\"ws\"][\"vxref\"]",
+						"variablevyref": "datasources[\"ws\"][\"vyref\"]",
+						"variablexiref": "datasources[\"ws\"][\"xiref\"]"
+					}
+				}
+			]
+		},
+		{
 			"title": "Démarrage",
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 9
+				"4": 1,
+				"5": 9
 			},
 			"col": {
 				"3": 1,
-				"4": 2
+				"4": 1,
+				"5": 2
 			},
 			"col_width": 1,
 			"widgets": [
@@ -31,51 +83,6 @@
 					}
 				}
 			]
-		},
-		{
-			"title": "Webcam",
-			"width": 1,
-			"row": {
-				"3": 1
-			},
-			"col": {
-				"3": 2
-			},
-			"col_width": "2",
-			"widgets": [
-				{
-					"type": "iframewidget",
-					"settings": {
-						"title": "",
-						"host": "http://192.168.0.199:8080/stream_simple.html",
-                        "height": 9
-					}
-				}
-			]
-		},
-		{
-			"title": "Pilotage",
-			"width": 1,
-			"row": {
-				"3": 5,
-				"4": 1
-			},
-			"col": {
-				"3": 1,
-				"4": 1
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "joypad4roues",
-					"settings": {
-						"title": "Vitesses longitudinale et de rotation",
-						"variablevxref": "datasources[\"ws\"][\"vxref\"]",
-						"variablevyref": "datasources[\"ws\"][\"vyref\"]",
-						"variablexiref": "datasources[\"ws\"][\"xiref\"]"
-					}
-				}
-			]
 		}
 	],
 	"datasources": [
@@ -90,5 +97,5 @@
 			}
 		}
 	],
-	"columns": 3
+	"columns": 4
 }

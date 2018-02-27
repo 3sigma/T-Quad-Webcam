@@ -15,7 +15,7 @@
 			"col": {
 				"2": 2,
 				"3": 2,
-				"4": 3,
+				"4": 2,
 				"5": 3
 			},
 			"col_width": "2",
@@ -30,15 +30,42 @@
 			]
 		},
 		{
+			"title": "Pilotage",
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 5,
+				"5": 1
+			},
+			"col": {
+				"3": 1,
+				"4": 1,
+				"5": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "joypad2roues",
+					"settings": {
+						"title": "Vitesses longitudinale et de rotation",
+						"variablevxref": "datasources[\"ws\"][\"vxref\"]",
+						"variablexiref": "datasources[\"ws\"][\"xiref\"]"
+					}
+				}
+			]
+		},
+		{
 			"title": "Démarrage",
 			"width": 1,
 			"row": {
 				"3": 1,
-				"4": 9
+				"4": 1,
+				"5": 9
 			},
 			"col": {
 				"3": 1,
-				"4": 2
+				"4": 1,
+				"5": 2
 			},
 			"col_width": 1,
 			"widgets": [
@@ -57,29 +84,6 @@
 					}
 				}
 			]
-		},
-		{
-			"title": "Pilotage",
-			"width": 1,
-			"row": {
-				"3": 5,
-				"4": 1
-			},
-			"col": {
-				"3": 1,
-				"4": 1
-			},
-			"col_width": 1,
-			"widgets": [
-				{
-					"type": "joypad2roues",
-					"settings": {
-						"title": "Vitesses longitudinale et de rotation",
-						"variablevxref": "datasources[\"ws\"][\"vxref\"]",
-						"variablexiref": "datasources[\"ws\"][\"xiref\"]"
-					}
-				}
-			]
 		}
 	],
 	"datasources": [
@@ -94,5 +98,5 @@
 			}
 		}
 	],
-	"columns": 3
+	"columns": 4
 }
